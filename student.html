@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student' Evaluation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        html {
+    scroll-behavior: smooth;
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #6a5acd;
+            height: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000; /* Pastikan lebih tinggi dari teacher-container */
+        }
+
+        .smart { color: black; }
+        .study { color: white; }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .hamburger { display: block; }
+            .menu {
+                display: none;
+                flex-direction: column;
+                background-color: #6a5acd;
+                position: absolute;
+                top: 50px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                z-index: 1001;
+            }
+            .menu a { padding: 10px; display: block; border-top: 1px solid white; }
+            .menu.active { display: flex; }
+        }
+
+        .teacher-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .teacher-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .teacher-card.show { opacity: 1; transform: translateY(0); }
+
+        .teacher-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .teacher-card h3 { font-size: 18px; color: #333; }
+        .teacher-card p { font-size: 14px; color: #a055a0; font-weight: bold; }
+        .teacher-card .description { 
+            font-size: 13px;
+            color: #555;
+        }
+
+        @media (max-width: 992px) {
+            .teacher-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .teacher-container { grid-template-columns: repeat(1, 1fr); }
+        }
+
+        .pendapat {
+            font-size: 28px;
+            font-weight: bold;
+            color: #a055a0;
+            margin-bottom: 20px;
+        }
+
+              /* Background Video */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Overlay untuk efek pencahayaan */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Sesuaikan transparansi */
+    z-index: -1;
+}
+
+.footer {
+    margin-top: auto;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><span class="smart">Smart</span><span class="study">Study</span></h1>
+        <button class="hamburger">&#9776;</button>
+        <nav class="menu">
+            <a href="index.html">Home</a>
+            <a href="Data.html">Data</a>
+            <a href="student.html">Student Evaluation</a>
+            <a href="kelompok.html">Kelompok</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <h2 class="pendapat">Bagaimana Pendapatmu Terhadap Lingkungan Pertemanan Di Sekolahmu</h2>
+
+    <div class="teacher-container">
+        <div class="teacher-card"><img src="brampp.jpg"><h3>Bramastya Wahyu</h3><p>Student</p><p class="description">sangat ok, memberi semangat 45</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Intan Fara Ramdhani</h3><p>Student</p><p class="description">tidak asik</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Irfan</h3><p>Student</p><p class="description">pendapat ku yaitu di sini pertemanan nya enak sekali tidak memandang apapun </p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Iqbal</h3><p>Student</p><p class="description">Saaya selalu di benci oleh teman teman saya di sekolah mungkin karena saya lemah dan orng nya sering teledor, tetapi itu tidak membuat saya menjadi malas untuk masuk sekolah saya tetap semangat untuk mencari ilmu</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Zico</h3><p>Student</p><p class="description">Terkadang teman² yang lainnya sering menindass karena saya terlihat lemah di depan mereka</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Kayla</h3><p>Student</p><p class="description">Ya baik semua pelajar disini ramah dan dapat berteman dengan baik</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Sandy</h3><p>Student</p><p class="description">Semua siswa nya baik dan cerdass di sini banyak siswa yang memiliki kreativitas tinggi</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Farah</h3><p>Student</p><p class="description">Baik semua teman di sekolah saya sangat solidd dan kompak ini menjaga agar tali perhubungan pertemanan kita menjadi kokoh</p></div>
+    </div>
+
+    <h2 class="pendapat">Bagaimana Lingkungan Sekolah Yang Bersih Dan Nyaman Dapat Mempengaruhi Semangat Belajar Siswa? Jelaskan Pendapat Anda!</h2>
+
+    <div class="teacher-container">
+        <div class="teacher-card"><img src="brampp.jpg"><h3>Bramastya Wahyu</h3><p>Student</p><p class="description">dapat mempengaruhi karena kita belajar harus dengan kondisi senyaman mungkin agar kita dapat mendapat ilmu yang bisa di pahami</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Intan Fara</h3><p>Student</p><p class="description">iyaa bener kalau lingkungan sekolah bersih saya bakal semangat</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Irfan</h3><p>Student</p><p class="description">iyaa jika lingkungan sekolah bersih Asri dan banyak pepohonan suasana makin tenang saat pembelajaran dan sebaliknya jika lingkungan sekolah kotor dan tidak ada pepohonan maka akan menggangu suasana seperti kurang enak dan tidak fokus pembelajaran </p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Raka</h3><p>Student</p><p class="description">Iya karena kita dapat mengambil materi dengan cukup nyaman tanpa ada kendala atau gangguan</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Zara</h3><p>Student</p><p class="description">berpengaruh, karna ketika belajar dalam keadaan kotor akan terasa risih dan tidak nyaman ketika sedang belajar</p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Sepila</h3><p>Student</p><p class="description">yaa jelas menurut saya tempat yang nyaman untuk di singgah yaaa, tempat bersih dan membuat saya semangat untuk belajar </p></div>
+        <div class="teacher-card"><img src="vino.jpg"><h3>Vino</h3><p>Student</p><p class="description">Ya pengaruh bangett kalau bersih siswa tidak risih dan kebersihan juga sebagian dari iman </p></div>
+        <div class="teacher-card"><img src="noppboy.jpg"><h3>Farra Najwa</h3><p>Student</p><p class="description">iya, kalo kotor ya risih</p></div>
+    </div>
+
+    
+    <!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="mentahan.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<!-- Overlay untuk efek cahaya -->
+<div class="overlay"></div>
+
+<div class="footer">&copy; 2025 | Web Developer - Muhammad Galih Rachmansyah</div>
+
+
+    <script>
+        document.querySelector(".hamburger").addEventListener("click", function () {
+            document.querySelector(".menu").classList.toggle("active");
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.teacher-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+
+</body>
+</html>

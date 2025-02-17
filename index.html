@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lingkungan Murid Di Sekolah</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+       html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #6a5acd;
+            padding: 15px 20px;
+            height: 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .smart {
+            color: black; /* Warna oranye */
+        }
+
+        .study {
+            color: white; /* Warna biru muda */
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 50px;
+        }
+
+        .text-content {
+            max-width: 400px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .text-content h1 {
+            color: #00BFFF;
+            font-size: 28px;
+            white-space: normal; /* Mengizinkan teks turun ke bawah */
+            word-wrap: break-word; /* Mencegah teks keluar layar */
+        }
+
+        .text-content p {
+            color: #ffffff;
+            margin: 20px 0;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .image {
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        img {
+            width: 160%;
+            border-radius: 10px;
+        }
+        
+
+        /* Background Video */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Overlay untuk efek pencahayaan */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Sesuaikan transparansi */
+    z-index: -1;
+}
+         
+.footer {
+    margin-top: auto;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+    
+        /* Responsive untuk tablet */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .text-content {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Responsive untuk HP */
+        @media (max-width: 600px) {
+            .hamburger {
+                display: block;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                background-color: #6a5acd;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                z-index: 1000;
+            }
+
+            .menu a {
+                padding: 10px;
+                display: block;
+                border-top: 1px solid white;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .text-content {
+                max-width: 100%; /* Agar teks tidak keluar layar */
+                word-wrap: break-word;
+            }
+
+            .text-content h1 {
+                font-size: 22px; /* Ukuran lebih kecil agar pas */
+                white-space: normal;
+            }
+
+            .image img {
+                width: 100%; /* Gambar agar tidak terlalu besar di HP */
+            }
+        }
+
+        /* Efek Mesin Ketik */
+        .typing-text::after {
+            content: "|";
+            display: inline-block;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>
+            <span class="smart">Smart</span><span class="study">Study</span>
+        </h1>
+        <button class="hamburger">&#9776;</button>
+        <nav class="menu">
+            <a href="index.html">Home</a>
+            <a href="Data.html">Data</a>
+            <a href="student.html">Student Evaluation</a>
+            <a href="kelompok.html">Kelompok</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="mentahan.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<!-- Overlay untuk efek cahaya -->
+<div class="overlay"></div>
+
+
+    <div class="container">
+        <div class="text-content">
+            <h1 class="typing-text"></h1>
+            <p>Lingkungan murid di sekolah mengacu pada segala aspek yang mempengaruhi kehidupan dan perkembangan seorang murid selama mereka berada di sekolah. Ini melibatkan berbagai faktor yang membentuk pengalaman belajar dan interaksi sosial mereka. Lingkungan ini tidak hanya mencakup kondisi fisik seperti fasilitas dan ruang kelas, tetapi juga aspek sosial, emosional, dan budaya yang terjadi di dalam dan sekitar sekolah.</p>
+            <a href="Data.html" class="btn">Get Started</a>
+        </div>
+        <div class="image">
+            <img src="muridsekolahbg.png">
+        </div>
+    </div>
+
+    <div class="footer">&copy; 2025 | Web Developer - Muhammad Galih Rachmansyah</div>
+
+
+    <script>
+        // Efek Mesin Ketik Gantian
+        const textElement = document.querySelector(".typing-text");
+        const texts = [
+            "Lingkungan Murid Di Sekolah",
+            "Student Environment At School"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            let currentText = texts[textIndex];
+
+            if (isDeleting) {
+                textElement.innerHTML = currentText.substring(0, charIndex);
+                charIndex--;
+
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length; // Pindah ke teks berikutnya
+                    setTimeout(typeEffect, 1000); // Tunggu sebelum mulai teks baru
+                    return;
+                }
+            } else {
+                textElement.innerHTML = currentText.substring(0, charIndex);
+                charIndex++;
+
+                if (charIndex > currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 1500); // Tunggu sebelum mulai hapus
+                    return;
+                }
+            }
+            setTimeout(typeEffect, isDeleting ? 50 : 100);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            textElement.innerHTML = "";
+            setTimeout(typeEffect, 500);
+        });
+
+        // Animasi Scroll untuk teks & gambar
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+                document.querySelectorAll(".text-content").forEach((element) => {
+                    element.style.opacity = "1";
+                    element.style.transform = "translateY(0)";
+                });
+
+                document.querySelector(".image").style.opacity = "1";
+                document.querySelector(".image").style.transform = "translateY(0)";
+            }, 500);
+        });
+
+        // Animasi hamburger menu
+        document.querySelector(".hamburger").addEventListener("click", function () {
+            document.querySelector(".menu").classList.toggle("active");
+        });
+    </script>
+</body>
+</html>

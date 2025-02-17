@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStudy</title>
+    <style>
+        html {
+    scroll-behavior: smooth;
+}
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #6a5acd;
+            padding: 10px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .smart {
+            color: black; /* Warna oranye */
+        }
+
+        .study {
+            color: white; /* Warna biru muda */
+        }
+
+        .menu {
+            display: flex;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .course {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .course .box {
+            flex: 1 1 calc(33.33% - 20px);
+            background: rgb(65, 192, 234);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(0,0,0,.1);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .course .box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .course .box img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        /* MODAL STYLES */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 5px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .course .box {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+        @media (max-width: 600px) {
+            .hamburger {
+                display: block;
+            }
+            .menu {
+                display: none;
+                flex-direction: column;
+                background-color: #6a5acd;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                z-index: 1000;
+            }
+            .menu a {
+                padding: 10px;
+                display: block;
+                border-top: 1px solid white;
+            }
+            .menu.active {
+                display: flex;
+            }
+            .course .box {
+                flex: 1 1 100%;
+            }
+        }
+
+        .gif-container {
+            display: none;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            width: 90%;
+            max-width: 600px;
+        }
+        img {
+            width: 45%;
+            height: auto;
+            border-radius: 10px;
+        }
+        /* Emulator & PC - Posisi lebih ke tengah */
+        @media (min-width: 600px) {
+            .gif-container {
+                justify-content: flex-end;
+                margin-right: 200px;
+            }
+        }
+
+
+        
+        /* Background Video */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Overlay untuk efek pencahayaan */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Sesuaikan transparansi */
+    z-index: -1;
+}
+
+.footer {
+    margin-top: auto;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>
+            <span class="smart">Smart</span><span class="study">Study</span>
+        </h1>
+        <button class="hamburger">&#9776;</button>
+        <nav class="menu">
+            <a href="index.html">Home</a>
+            <a href="Data.html">Data</a>
+            <a href="student.html">Student Evaluation</a>
+            <a href="kelompok.html">Kelompok</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <div class="container">
+        <section class="course">
+            <div class="box"><img src="1.jpg" class="image"><h3>Apakah Kamu Puas Dengan Fasilitas Yang Ada Di Sekolahmu?</h3><p>kebanyakan siswa masing masing sama antara menjawab iya dan tidak Artinya Fasilitas yang ada di sekolah-sekolah Indonesia
+                memang masih terbatas, dan banyak siswa merasa bahwa fasilitas tersebut belum cukup memadai. Namun, meskipun demikian, hal
+                ini tidak menghalangi semangat mereka untuk terus mengejar pendidikan.</p></div>
+            <div class="box"><img src="2.jpg" class="image"><h3>Apakah Kamu Setuju Dengan Sistem Kegiatan Belajar Mengajar Di Sekolahmu?</h3><p>menurut hasil survei, mayoritas siswa dan siswi memilih setuju dengan sistem belajar mengajar disekolah nya. hal ini menunjukan bahwa metode pembelajaran yang diterapkan efektif dan sesuai dengan kebutuhan siswa.
+            </p></div>
+            <div class="box"><img src="3.jpg" class="image"><h3>Apakah Kamu Merasa Nyaman Dengan Kondisi Lingkungan Sekolahmu Saat Ini?</h3><p>hasil survei menyatakan mayoritas siswa dan siswi merasa nyaman dengan lingkungan sekolah karena suasana yang kondusif dan fasilitas yang mendukung. </p></div>
+            <div class="box"><img src="4.jpg" class="image"><h3>Apakah Lingkungan Pertemanan Di Sekolahmu Berdampak Baik Untukmu?</h3><p>Hasil survei menunjukkan bahwa mayoritas siswa dan siswi merasakan dampak positif dari lingkungan pertemanan di sekolah, seperti meningkatnya motivasi belajar dan dukungan sosial.</p></div>
+            <div class="box"><img src="5.jpg" class="image"><h3>Apakah Anda Pernah Merasa Mengantuk Saat Pelajaran Berlangsung,Namun Ketika Sampai Di Rumah Rasa Kantuk Tersebut Justru Menghilang?
+            </h3><p>Hasil survei menunjukkan Mayoritas siswa dan siswi banyak yang kadang-kadang merasa ngantuk saat pelajaran, tapi segar kembali di rumah. Ini bisa dipengaruhi oleh suasana kelas, kenyamanan, atau minat terhadap materi, bukan hanya kelelahan fisik</p></div>
+            <div class="box"><img src="6.jpg" class="image"><h3>Apakah Anda Pernah Tertidur Di Saat Jam Pelajaran?</h3><p>mayoritas responden mengaku pernah tertidur saat jam pelajaran, dengan rincian sebagai berikut:
+
+                31 orang (35,6%) menyatakan bahwa mereka kadang-kadang tertidur di kelas.
+                
+                29 orang (33,3%) menyatakan bahwa mereka pernah tertidur saat pelajaran berlangsung.
+                
+                28 orang (32,2%) menyatakan bahwa mereka sering tertidur di kelas.
+                
+                Hanya 9 orang (10,3%) yang menyatakan tidak pernah tertidur saat jam pelajaran.
+                
+                
+                Dari data ini, dapat disimpulkan bahwa sebagian besar siswa (sekitar 90%) pernah mengalami ketiduran di kelas, baik sesekali maupun sering. Hal ini mungkin disebabkan oleh kurangnya waktu tidur, kelelahan, atau kurangnya minat terhadap pelajaran tertentu.</p></div>
+            <div class="box"><img src="7.jpg" class="image"><h3>Apakah Anda Pernah Terkena Bulliying,Baik Itu Secara Fisik Atau Secara Non Fisik Saat Di Sekolah?
+            </h3><p>Berdasarkan diagram batang di atas, mayoritas responden (51 orang atau 58,6%) menyatakan tidak pernah mengalami bullying, baik fisik maupun non-fisik, saat di sekolah. Namun, masih terdapat 19 orang (21,8%) yang pernah mengalami bullying, 15 orang (17,2%) yang mengaku kadang-kadang mengalaminya, dan 4 orang (4,6%) yang bahkan sering terkena bullying. Data ini menunjukkan bahwa meskipun sebagian besar responden tidak pernah menjadi korban bullying, terdapat pula sekelompok responden yang masih rentan terhadap tindakan tersebut.</p></div>
+            <div class="box"><img src="8.jpg" class="image"><h3>Pernakah Anda Medapatkan
+                Berita-berita Yang Menarik Terkait Sekolah Anda Seperti Adanya Cerita Horor/Mitos/Fakta Unik Yang Ada Di Sekolah?</h3><p>Berdasarkan diagram batang di atas, mayoritas responden (43 orang atau 50%) menyatakan pernah mendapatkan berita-berita menarik terkait sekolah, seperti cerita horor, mitos, atau fakta unik. Sementara itu, 21 orang (24,4%) mengaku kadang-kadang mendapat informasi serupa, 12 orang (14%) menyatakan sering mendapatkannya, dan 13 orang (15,1%) menyebut tidak pernah. Hal ini menunjukkan bahwa topik mengenai cerita unik, horor, maupun mitos di sekolah cukup diminati oleh sebagian besar responden.</p></div>
+        </section>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+        <img id="modal-img">
+    </div>
+    
+    <div class="gif-container">
+        <img src="cewek-unscreen.gif" alt="GIF 1">
+        <img src="cowok-unscreen.gif" alt="GIF 2">
+    </div>
+
+     <!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="mentahan.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<!-- Overlay untuk efek cahaya -->
+<div class="overlay"></div>
+
+<div class="footer">&copy; 2025 | Web Developer - Muhammad Galih Rachmansyah</div>
+
+     
+
+    <script>
+        // Toggle menu hamburger
+        document.querySelector(".hamburger").addEventListener("click", function() {
+            document.querySelector(".menu").classList.toggle("active");
+        });
+
+        // Animasi muncul dari bawah saat di-scroll
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll(".box").forEach(box => {
+            observer.observe(box);
+        });
+
+        // Modal Gambar
+        const modal = document.getElementById("modal");
+        const modalImg = document.getElementById("modal-img");
+
+        document.querySelectorAll(".image").forEach(img => {
+            img.addEventListener("click", function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            });
+        });
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
